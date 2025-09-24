@@ -1,16 +1,16 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "rapidez/fullscreen-search",
+    "description": "Rapidez Fullscreen Search",
     "keywords": [
         "rapidez",
-        ":package_slug"
+        "fullscreen-search"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/rapidez/fullscreen-search",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Roy Duineveld",
+            "email": "royduineveld@gmail.com",
             "role": "Developer"
         }
     ],
@@ -22,16 +22,19 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src"
+            "Rapidez\\FullscreenSearch\\": "src"
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Rapidez\\FullscreenSearch\\FullscreenSearchServiceProvider"
             ]
         }
     }
