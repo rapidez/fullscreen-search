@@ -2,7 +2,18 @@
 
 ## Installation
 
-Don't forget to add this to your installation:
+```
+composer require rapidez/fullscreen-search
+```
+
+To use the views from this package instead of the default ones, you'll need to publish the "core overwrite views" with the following command:
+```
+php artisan vendor:publish --provider="Rapidez\FullscreenSearch\FullscreenSearchServiceProvider" --tag=core-overwrites
+```
+
+## Configuration
+
+Don't forget to add this to your config:
 
 tailwind.config.js
 ```
@@ -27,22 +38,6 @@ config/rapidez/frontend.php
     ],
     'size' => 4,
 ],
-```
-
-```
-composer require rapidez/fullscreen-search
-```
-
-To use the views from this package instead of the default ones, you'll need to publish the "core overwrite views" with the following command:
-```
-php artisan vendor:publish --provider="Rapidez\FullscreenSearch\FullscreenSearchServiceProvider" --tag=core-overwrites
-```
-
-## Configuration
-
-You can publish the config with:
-```
-php artisan vendor:publish --tag=rapidez-fullscreen-search-config
 ```
 
 ## Views
