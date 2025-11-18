@@ -1,0 +1,1 @@
+@include('rapidez-fullscreen-search::layouts.partials.header.autocomplete.results')
