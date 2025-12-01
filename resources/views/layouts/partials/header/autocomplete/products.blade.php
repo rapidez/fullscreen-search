@@ -24,9 +24,7 @@
                     <div v-if="!isLastPage" v-intersection-observer="([entry]) => entry?.isIntersecting ? refineNext() : ''"></div>
                 </div>
                 <ais-state-results v-slot="{ status }" v-if="!isLastPage">
-                    <div
-                        class="flex pt-4"
-                    >
+                    <div class="flex pt-4">
                         <x-rapidez::button class="mx-auto" v-bind:disabed="status !== 'idle'" v-on:click="() => status === 'idle' && refineNext()">
                             <span v-if="status === 'idle'">@lang('Show more')</span>
                             <span v-else>@lang('Loading')...</span>

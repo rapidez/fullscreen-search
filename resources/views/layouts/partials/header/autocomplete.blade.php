@@ -15,8 +15,8 @@
                                 <x-rapidez::autocomplete.input
                                     v-bind:value="currentRefinement"
                                     v-on:focus="() => {
-                                        refine($root.autocompleteFacadeQuery || currentRefinement);
-                                        $root.autocompleteFacadeQuery = null;
+                                        refine(autocompleteFacadeQuery || currentRefinement);
+                                        autocompleteFacadeQuery = null;
                                         autoCompleteToggler.toggle(true);
                                         window.setTimeout(() => window.requestAnimationFrame(() => window.document.getElementById('autocomplete-input-fullscreen').focus()));
                                     }"
@@ -26,22 +26,24 @@
                                 />
                             </div>
                         </ais-autocomplete>
-                        <div class="fixed inset-0 searchbox bg-white group z-header-autocomplete-popup flex flex-col h-full" v-if="autoCompleteToggler.isOpen">
+                        <div class="fixed inset-0 bg-white group z-header-autocomplete-popup flex flex-col h-full" v-if="autoCompleteToggler.isOpen">
                             <div class="py-3 bg">
                                 <div class="container">
                                     <input checked type="checkbox" class="prevent-scroll hidden">
                                     <ais-autocomplete v-slot="{ currentRefinement, refine }">
                                         <div class="flex gap-x-3">
                                             <div class="h-12 shrink-0 xl:flex-1 max-sm:hidden">
-                                                <img v-on:click="autoCompleteToggler.close(); refine('')" src="https://raw.githubusercontent.com/rapidez/art/master/r.svg" alt="Rapidez logo" height="50" width="50" class="h-full w-auto cursor-pointer block">
+                                                <div class="max-h-full h-full *:h-full *:w-auto *:block cursor-pointer inline-block" v-on:click="autoCompleteToggler.close(); refine('')">
+                                                    @include('rapidez-fullscreen-search::layouts.partials.header.autocomplete.logo')
+                                                </div>
                                             </div>
 
                                             <div class="max-w-2xl w-full mx-auto">
                                                 <x-rapidez::autocomplete.input
                                                     v-bind:value="currentRefinement"
                                                     v-on:focus="() => {
-                                                        refine($root.autocompleteFacadeQuery || currentRefinement);
-                                                        $root.autocompleteFacadeQuery = null;
+                                                        refine(autocompleteFacadeQuery || currentRefinement);
+                                                        autocompleteFacadeQuery = null;
                                                     }"
                                                     @keydown.escape="autoCompleteToggler.close()"
                                                     v-on:input="refine($event.currentTarget.value)"
@@ -76,7 +78,7 @@
 
             <div class="relative w-full" v-else>
                 <x-rapidez::autocomplete.input
-                    v-model="$root.autocompleteFacadeQuery"
+                    v-model="autocompleteFacadeQuery"
                     v-on:focus="autoCompleteToggler.toggle(true), window.document.dispatchEvent(new window.Event('loadAutoComplete'))"
                     id="autocomplete-input"
                 />

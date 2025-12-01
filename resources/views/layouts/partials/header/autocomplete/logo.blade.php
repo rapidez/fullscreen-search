@@ -1,0 +1,1 @@
+<img src="https://raw.githubusercontent.com/rapidez/art/master/r.svg" alt="Rapidez logo" height="50" width="50">
