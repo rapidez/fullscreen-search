@@ -1,0 +1,35 @@
+<search-suggestions v-slot="searchSuggestions" :force-results="false">
+    <ais-state-results v-slot="{ query }">
+        <ais-instant-search
+            v-if="searchSuggestions.searchClient"
+            :future="{ preserveSharedStateOnUnmount: true }"
+            :index-name="config.index.search_query"
+            :search-client="searchSuggestions.searchClient"
+        >
+            <ais-configure
+                :query="query || ' '"
+                :hits-per-page.camel="{{ Arr::get($fields, 'size', config('rapidez.frontend.autocomplete.size', 3)) }}"
+                filters="display_in_terms:1"
+            />
+            <ais-hits v-slot="{ items }" class="max-w-2xl w-full mx-auto">
+                <div v-if="items && items.length">
+                    <x-rapidez::autocomplete.title class="pb-1 px-0 sm:px-5 font-normal">
+                        @lang('Suggestions')
+                    </x-rapidez::autocomplete.title>
+                    <ul class="flex flex-col font-sans">
+                        <li v-for="(item, count) in items" class="flex flex-1 items-center w-full rounded hover:bg">
+                            <a
+                                v-bind:href="window.url(item.redirect || '{{ route('search', ['q' => 'searchPlaceholder']) }}'.replace('searchPlaceholder', encodeURIComponent(item.query_text)))"
+                                class="relative flex items-center group w-full sm:px-5 py-1.5 text-sm gap-x-2.5"
+                                data-turbo="false"
+                            >
+                                <x-heroicon-o-arrow-trending-up class="size-5 text-muted" />
+                                <x-rapidez::highlight attribute="query_text" class="line-clamp-2 first-letter:uppercase"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </ais-hits>
+        </ais-instant-search>
+    </ais-state-results>
+</search-suggestions>

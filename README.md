@@ -6,11 +6,38 @@
 composer require rapidez/fullscreen-search
 ```
 
+To use the views from this package instead of the default ones, you'll need to publish the "core overwrite views" with the following command:
+```
+php artisan vendor:publish --provider="Rapidez\FullscreenSearch\FullscreenSearchServiceProvider" --tag=core-overwrites
+```
+
 ## Configuration
 
-You can publish the config with:
+Don't forget to add this to your config:
+
+tailwind.config.js
 ```
-php artisan vendor:publish --tag=rapidez-fullscreen-search-config
+'header-autocomplete-popup': '40',
+```
+
+config/rapidez/frontend.php
+```
+'autocomplete' => [
+    'additionals' => [
+        'history'            => [],
+        'search-suggestions' => [],
+        'categories'         => [
+            'defaultValues' => fn () => config('rapidez.models.category')::where('parent_id', config('rapidez.root_category_id'))
+                ->limit(config('rapidez.frontend.autocomplete.additionals.categories.size', config('rapidez.frontend.autocomplete.size', 4)))
+                ->get(),
+        ],
+        'popular-products' => ['size' => 4],
+        'products' => [
+            'size' => 4,
+        ],
+    ],
+    'size' => 4,
+],
 ```
 
 ## Views
