@@ -47,6 +47,13 @@ You can publish the views with:
 php artisan vendor:publish --tag=rapidez-fullscreen-search-views
 ```
 
+## Browser tests
+
+- Make sure Rapidez with the fullscreen-search is working in your browser
+- Run the tests with `yarn playwright test`
+- Alternatively, run the tests from a UI with `yarn playwright test --ui`
+- Update the screenshots with `yarn playwright test --update-snapshots`
+
 ## License
 
 GNU General Public License v3. Please see [License File](LICENSE) for more information.
