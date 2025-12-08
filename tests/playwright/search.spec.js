@@ -9,6 +9,6 @@ test('fullscreen-search', BasePage.tags, async ({ page }) => {
     await page.waitForLoadState('networkidle')
     await page.getByTestId('autocomplete-input-fullscreen').fill(product.name)
     await page.waitForLoadState('networkidle')
-    await expect(page.getByTestId('autocomplete-item').first()).toContainText(product.name)
+    await expect(page.getByTestId('listing-item').first()).toContainText(product.name)
     await new BasePage(page).screenshot()
 })
