@@ -22,7 +22,6 @@
                                     }"
                                     v-on:input="refine($event.currentTarget.value)"
                                     list="search-history"
-                                    id="autocomplete-input"
                                 />
                             </div>
                         </ais-autocomplete>
@@ -80,7 +79,6 @@
                 <x-rapidez::autocomplete.input
                     v-model="autocompleteFacadeQuery"
                     v-on:focus="autoCompleteToggler.toggle(true), window.document.dispatchEvent(new window.Event('loadAutoComplete'))"
-                    id="autocomplete-input"
                 />
             </div>
         </div>
