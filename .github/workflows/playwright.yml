@@ -117,6 +117,10 @@ jobs:
       - name: Publish Rapidez configs
         run: php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag="config"
 
+      - name: Add header-autocomplete-popup to Tailwind zIndex block
+        run: |
+          sed -i "/zIndex: {/,/^[[:space:]]*},/ s/^[[:space:]]*},/'header-autocomplete-popup': '40',\n},/" tailwind.config.js
+
       - name: Install Rapidez command
         run: php artisan rapidez:install --frontendonly
 
