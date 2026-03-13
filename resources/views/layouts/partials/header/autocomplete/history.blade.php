@@ -9,7 +9,7 @@
                     v-for="[query, metadata] in autocompleteSlotProps.searchHistory
                         .filter(([query, metadata]) => query.includes(searchQuery.toLowerCase()))
                         .slice(0, {{ Arr::get($fields, 'size', config('rapidez.frontend.autocomplete.size', 3)) }})"
-                    class="flex flex-1 items-center w-full hover:bg rounded-sm"
+                    class="flex flex-1 items-center w-full hover:bg rounded-xs"
                 >
                     <a
                         v-bind:href="'{{ route('search', ['q' => 'searchPlaceholder']) }}'.replace('searchPlaceholder', encodeURIComponent(query))"
