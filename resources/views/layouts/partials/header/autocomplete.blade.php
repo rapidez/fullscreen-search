@@ -22,7 +22,6 @@
                                     }"
                                     v-on:input="refine($event.currentTarget.value)"
                                     list="search-history"
-                                    id="autocomplete-input"
                                 />
                             </div>
                         </ais-autocomplete>
@@ -48,6 +47,7 @@
                                                     @keydown.escape="autoCompleteToggler.close()"
                                                     v-on:input="refine($event.currentTarget.value)"
                                                     id="autocomplete-input-fullscreen"
+                                                    data-testid="autocomplete-input-fullscreen"
                                                     list="search-history"
                                                 />
                                             </div>
@@ -80,7 +80,7 @@
                 <x-rapidez::autocomplete.input
                     v-model="autocompleteFacadeQuery"
                     v-on:focus="autoCompleteToggler.toggle(true), window.document.dispatchEvent(new window.Event('loadAutoComplete'))"
-                    id="autocomplete-input"
+                    v-on:mouseover="window.document.dispatchEvent(new window.Event('loadAutoComplete'))"
                 />
             </div>
         </div>
